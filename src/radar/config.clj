@@ -30,8 +30,10 @@
     (reader filename)))
 
 (defn categories [configuration]
-  (map #(% "name") configuration))
+  (filter #(not (nil? %)) (map #(% "name") configuration)))
 
 (defn targets [configuration]
-  (map #(% "categories") configuration))
+  (filter #(not (nil? %)) (map #(% "categories") configuration)))
 
+(defn levels [configuration]
+  (first (filter #(not (nil? %)) (map #(% "levels") configuration))))
